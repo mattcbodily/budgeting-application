@@ -10,7 +10,8 @@ const Register = props => {
         [password, setPassword] = useState(''),
         [verPassword, setVerPassword] = useState('');
 
-    const register = () => {
+    const registerUser = (e) => {
+        e.preventDefault();
         if(password && password === verPassword){
             axios.post('/api/register', {firstName, lastName, email, password})
             .then(res => {
@@ -24,11 +25,14 @@ const Register = props => {
     return (
         <section>
             <h3>Create an Account</h3>
-            <input value={firstName}/>
-            <input value={lastName}/>
-            <input value={email}/>
-            <input type='password' value={password}/>
-            <input type='password' value={verPassword}/>
+            <form>
+                <input value={firstName} onChange={e => setFirstName(e.target.value)}/>
+                <input value={lastName} onChange={e => setLastName(e.target.value)}/>
+                <input value={email} onChange={e => setEmail(e.target.value)}/>
+                <input type='password' value={password} onChange={e => setPassword(e.target.value)}/>
+                <input type='password' value={verPassword} onChange={e => setVerPassword(e.target.value)}/>
+                <button onClick={e => registerUser(e)}>Register</button>
+            </form>
         </section>
     )
 }
