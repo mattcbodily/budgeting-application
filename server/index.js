@@ -30,5 +30,6 @@ app.get('/api/logout', authCtrl.logout);
 
 //Budget Endpoints
 app.get('/api/budget/:id', budgetCtrl.getBudget);
+app.post('/api/budget', budgetCtrl.addBudget);
 
 app.listen(SERVER_PORT, () => console.log(`Budgeting on ${SERVER_PORT}`));
